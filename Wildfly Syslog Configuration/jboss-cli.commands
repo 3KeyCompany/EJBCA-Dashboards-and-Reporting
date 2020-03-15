@@ -1,0 +1,11 @@
+/subsystem=logging/custom-handler=SYSLOG:add(class=org.jboss.logmanager.handlers.SyslogHandler, module=org.jboss.logmanager, properties={serverHostname="lab04.3key.company", hostname="lab01.3key.company", port="5143", protocol="TCP", appName="ejbca", facility="LOCAL_USE_7", encoding="US-ASCII", syslogType="RFC3164", maxLength="65000"})
+
+/subsystem=logging/custom-handler=SYSLOG:write-attribute(name=level, value=INFO) 
+ 
+/subsystem=logging/logger=org.ejbca:add
+/subsystem=logging/logger=org.ejbca:write-attribute(name=level, value=INFO)
+/subsystem=logging/logger=org.ejbca:assign-handler(name="SYSLOG")
+ 
+/subsystem=logging/logger=org.cesecore:add
+/subsystem=logging/logger=org.cesecore:write-attribute(name=level, value=INFO)
+/subsystem=logging/logger=org.cesecore:assign-handler(name="SYSLOG")

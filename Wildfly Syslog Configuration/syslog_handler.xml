@@ -1,0 +1,28 @@
+<custom-handler name="SYSLOG" class="org.jboss.logmanager.handlers.SyslogHandler" module="org.jboss.logmanager">
+    <level name="INFO"/>
+    <properties>
+        <property name="serverHostname" value="lab04.3key.company"/>
+        <property name="hostname" value="lab01.3key.company"/>
+        <property name="port" value="5143"/>
+        <property name="protocol" value="TCP"/>
+        <property name="appName" value="ejbca"/>
+        <property name="facility" value="LOCAL_USE_7"/>
+        <property name="encoding" value="US-ASCII"/>
+        <property name="syslogType" value="RFC3164"/>
+        <property name="maxLength" value="65000"/>
+    </properties>
+</custom-handler>
+
+<logger category="org.ejbca">
+    <level name="INFO"/>
+    <handlers>
+        <handler name="SYSLOG"/>
+    </handlers>
+</logger>
+
+<logger category="org.cesecore">
+    <level name="INFO"/>
+    <handlers>
+        <handler name="SYSLOG"/>
+    </handlers>
+</logger>

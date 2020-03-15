@@ -1,0 +1,211 @@
+{
+  "ejbca-template" : {
+    "order" : 0,
+    "version" : 1,
+    "index_patterns" : [
+      "ejbca-*"
+    ],
+    "settings" : {
+      "index" : {
+        "number_of_shards" : "2",
+        "number_of_replicas" : "0",
+        "refresh_interval" : "5s"
+      }
+    },
+    "mappings" : {
+      "dynamic_templates" : [
+        {
+          "keywords" : {
+            "match_pattern" : "regex",
+            "mapping" : {
+              "norms" : false,
+              "type" : "keyword"
+            },
+            "match_mapping_type" : "string",
+            "match" : "^(resource|changed:|added:).*"
+          }
+        }
+      ],
+      "properties" : {
+        "original_message " : {
+          "type" : "text"
+        },
+        "hostname" : {
+          "type" : "keyword"
+        },
+        "@timestamp" : {
+          "type" : "date"
+        },
+        "logstash_node" : {
+          "type" : "keyword"
+        },
+        "@version" : {
+          "type" : "integer"
+        },
+        "ejbca" : {
+          "properties" : {
+            "additional" : {
+              "properties" : {
+                "msg" : {
+                  "type" : "text"
+                },
+                "remoteip" : {
+                  "type" : "ip"
+                },
+                "subjectaltname" : {
+                  "type" : "keyword"
+                },
+                "cert" : {
+                  "type" : "text"
+                },
+                "issuancerevocationreason" : {
+                  "type" : "keyword"
+                },
+                "leafsubject" : {
+                  "type" : "text"
+                },
+                "type" : {
+                  "type" : "keyword"
+                },
+                "error" : {
+                  "type" : "text"
+                },
+                "tokentype" : {
+                  "type" : "keyword"
+                },
+                "endentityprofileid" : {
+                  "type" : "keyword"
+                },
+                "includechain " : {
+                  "type" : "keyword"
+                },
+                "crlsignkey" : {
+                  "type" : "keyword"
+                },
+                "certificateprofileid" : {
+                  "type" : "keyword"
+                },
+                "caid" : {
+                  "type" : "keyword"
+                },
+                "subjectdn" : {
+                  "type" : "keyword"
+                },
+                "hardtokenissuerid" : {
+                  "type" : "keyword"
+                },
+                "extendedinformation" : {
+                  "type" : "keyword"
+                },
+                "publickey" : {
+                  "type" : "text"
+                },
+                "subjectemail" : {
+                  "type" : "keyword"
+                },
+                "sequence" : {
+                  "type" : "keyword"
+                },
+                "keyusage" : {
+                  "type" : "keyword"
+                },
+                "timemodified" : {
+                  "type" : "text"
+                },
+                "requestx500name" : {
+                  "type" : "text"
+                },
+                "certsignkey" : {
+                  "type" : "keyword"
+                },
+                "leaffingerprint" : {
+                  "type" : "keyword"
+                },
+                "certprofile" : {
+                  "type" : "text"
+                },
+                "status" : {
+                  "type" : "keyword"
+                },
+                "username" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "logger" : {
+              "type" : "keyword"
+            },
+            "module" : {
+              "type" : "keyword"
+            },
+            "custom_id" : {
+              "type" : "keyword"
+            },
+            "thread" : {
+              "type" : "keyword"
+            },
+            "message" : {
+              "type" : "text"
+            },
+            "event_type" : {
+              "type" : "keyword"
+            },
+            "additional_details" : {
+              "type" : "text"
+            },
+            "service" : {
+              "type" : "keyword"
+            },
+            "search_detail_2" : {
+              "type" : "keyword"
+            },
+            "search_detail_1" : {
+              "type" : "keyword"
+            },
+            "auth_token" : {
+              "type" : "keyword"
+            },
+            "event_status" : {
+              "type" : "keyword"
+            },
+            "timestamp" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "syslog" : {
+          "properties" : {
+            "severity" : {
+              "type" : "keyword"
+            },
+            "loglevel" : {
+              "type" : "keyword"
+            },
+            "pid" : {
+              "type" : "keyword"
+            },
+            "program" : {
+              "type" : "keyword"
+            },
+            "priority" : {
+              "type" : "keyword"
+            },
+            "facility" : {
+              "type" : "keyword"
+            },
+            "severity_label" : {
+              "type" : "keyword"
+            },
+            "facility_label" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "tags" : {
+          "type" : "keyword"
+        }
+      }
+    },
+    "aliases" : { }
+  }
+}
