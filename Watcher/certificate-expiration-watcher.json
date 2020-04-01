@@ -1,0 +1,53 @@
+{
+  "trigger": {
+    "schedule": {
+      "daily": {
+        "at": [
+          "midnight"
+        ]
+      }
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "search_type": "query_then_fetch",
+        "indices": [
+          "ejbca-*"
+        ],
+        "rest_total_hits_as_int": true,
+        "body": {
+          "query": {
+            "range": {
+              "ejbca.certificate.not_after": {
+                "lte": "now+30d"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "compare": {
+      "ctx.payload.hits.total": {
+        "gte": 1
+      }
+    }
+  },
+  "actions": {
+    "send_email": {
+      "email": {
+        "profile": "standard",
+        "from": "notifications@3key.company",
+        "to": [
+          "info@3key.company"
+        ],
+        "subject": "Certificate Expiration Watcher Notification",
+        "body": {
+          "html": "The following certificates identified by serial number will be expired in 30 days:<br/><br/>{{#ctx.payload.hits.hits}}{{_source.ejbca.certificate.serial.hex}}<br/>{{/ctx.payload.hits.hits}}<br/>Please renew the certificates before it will be late!"
+        }
+      }
+    }
+  }
+}
